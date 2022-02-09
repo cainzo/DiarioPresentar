@@ -28,7 +28,7 @@ const Navigation = () => {
   const mostrarBotones = () => {
     return categorias.map((c) => {
       return (
-        <Nav.Link href={c} className="">
+        <Nav.Link href={c} className="navegar-links">
           {c}
         </Nav.Link>
       );
@@ -45,7 +45,7 @@ const Navigation = () => {
                 className="ms-auto mx-2"
               />
               <Navbar.Collapse id="basic-navbar-nav" className="">
-                <Nav className="me-auto">{mostrarBotones()}</Nav>
+                <Nav className="me-auto contenedor-links">{mostrarBotones()}</Nav>
                 <Nav>
                   <NavDropdown
                     id="collasible-nav-dropdown"
