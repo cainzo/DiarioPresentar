@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
+import Cards from '../cards/Cards';
 
 
 import "./home.css";
@@ -20,8 +21,8 @@ const Home = () => {
         </Card.ImgOverlay>
       </Card>
         <Container className="main">
-        <Row>
-        <Col lg={9} md={9} sm={9} className=' mt-4 mx-auto'>
+        <Row className="">
+        <Col lg={9} md={9} sm={9} className=' mt-4 mx-auto '>
           <CardPrincipal></CardPrincipal>
           <Row>
             <Col> 
@@ -30,12 +31,28 @@ const Home = () => {
             <Col> 
             <CardPrincipal></CardPrincipal>
             </Col>
-          </Row>
+          </Row> 
+
+          <div className="cards-simples
+          " fluid>
+          <Cards></Cards>
+          <Cards></Cards>
+          <Cards></Cards>
+          <Cards></Cards>
+          <Cards></Cards>
+          <Cards></Cards>
+          <Cards></Cards>
+          
+          
+          
+          </div>
+          
+
         </Col>
         <Col lg={3} md={3} sm={3} className='sidebar mt-4 mx-auto'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores expedita hic, maiores ad odio vel officiis deleniti exercitationem voluptates sunt vero fuga iure necessitatibus quaerat omnis neque fugit, reprehenderit voluptate! Architecto neque vero, sequi aliquid inventore expedita! Eum quo voluptates ut nulla numquam impedit tempora natus sunt adipisci ex, quia velit recusandae reiciendis blanditiis officiis deserunt nostrum itaque veritatis asperiores minima, iure molestiae aut nisi vero. Autem, tempore error? Modi assumenda velit voluptates molestias quibusdam quidem laudantium temporibus aperiam nam, ratione dolore cupiditate doloremque tempore sapiente earum, nisi perferendis odit aliquam ipsum, in asperiores suscipit fuga odio? Optio, natus cumque, harum rerum cupiditate repellendus magnam eum ratione modi accusantium rem suscipit a adipisci quisquam! Placeat voluptas perferendis praesentium accusamus assumenda incidunt blanditiis! Fugit, cupiditate amet tenetur inventore vel nulla facilis non rem optio reiciendis eos autem voluptas necessitatibus quam impedit explicabo sequi quidem qui laborum, molestias soluta id! Earum vero, eaque amet maiores voluptatibus nisi ut, quisquam similique ab animi vel error aliquid officia neque. Sequi mollitia provident, quisquam saepe et odio illum repellat. Nobis, quia molestiae exercitationem rerum dicta sit ipsum facere modi neque vero natus accusantium sed eius optio ad praesentium eaque minima architecto tenetur dolor est unde.</Col>
       </Row>
         </Container>
-
+      
     </div>
   );
 };

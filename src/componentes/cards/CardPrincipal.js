@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Badge } from "react-bootstrap";
 
 import "./cardprincipal.css";
 
@@ -8,7 +8,8 @@ const CardPrincipal = () => {
     <>
       <Card className="bg-dark text-white card-noticia-top mt-2" >
       <a href="#" className="stretched-link"></a>
-      <span className="categoria-card m-1 bg-danger">Economia</span>
+      <Badge  pill className="categoria-card m-1 bg-danger">Economia</Badge>
+
         <Card.Img
           src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           alt="Card image"

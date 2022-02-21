@@ -12,7 +12,6 @@
 }
 .titulo{
     text-decoration:underline;
-    
 }
 
 .main{
@@ -35,6 +34,13 @@ main::after{
 }
 
 .sidebar{
-    font-family: 'Josefin Sans', sans-serif;
+
     
+}
+
+.cards-simples{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-around;
 }

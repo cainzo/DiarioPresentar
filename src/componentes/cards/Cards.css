@@ -1,0 +1,50 @@
+.cardcitas{
+    width: 32%;
+    background-color: rgb(219, 219, 219);
+    padding: 0;
+    transition: 250ms ease;
+    border: 0px solid red !important;
+
+  
+}
+.cardcitas-desc{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+            line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+}
+.cardcitas-body{
+    border-left: 1px solid rgba(180, 180, 180, 0.568) ;
+    border-right:  1px solid rgba(180, 180, 180, 0.568) ;
+    border-bottom : 1px solid rgba(180, 180, 180, 0.568) ;
+    
+}
+.cardcitas:hover{
+    transform: scale(1.02);
+    
+    box-shadow: 5px 5px 5px rgb(116, 115, 115);
+
+}
+.cardcitas-footer{
+    font-size: 10px;
+    background-color: white !important;
+    color: darkgray;
+}
+.cardcita-img{
+    object-fit: cover;
+
+}
+@media only screen and (max-width: 991px) {
+    .cardcitas{
+        width: 48%;
+    }
+  }
+
+@media only screen and (max-width: 767px) {
+    .cardcitas{
+        width: 100%;
+    }
+  }

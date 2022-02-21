@@ -23,7 +23,7 @@
 }
 
 .navegar-links:hover{
-    
+    text-shadow: 1px 8px 5px rgb(0, 0, 0);
     transform: scale(1.1);
 }
 
