@@ -1,36 +1,21 @@
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import buscar from "../../img/buscar.svg";
 import {
   Navbar,
   Nav,
   Container,
-  NavDropdown,
-  Modal,
-  Button,
-  Image,
-  Row,
-  Col,
+  NavDropdown
 } from "react-bootstrap";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navigation.css";
-const Navigation = () => {
-  const [categorias, setCategorias] = useState([
-    "Salud",
-    "Economia",
-    "Policiales",
-    "Politica",
-    "Deportes",
-    "Actualidad",
-    "Cine",
-  ]);
+const Navigation = (props) => {
   useEffect(() => {}, []);
   const mostrarBotones = () => {
-    return categorias.map((c) => {
+    return props.categorias.map((c) => {
       return (
-        <Nav.Link href={c} className="navegar-links">
-          {c}
-        </Nav.Link>
+        <Link to={"?categoria=" + c} className="nav-link">
+          {c.charAt(0).toUpperCase() + c.slice(1)}
+        </Link>
       );
     });
   };
@@ -38,14 +23,26 @@ const Navigation = () => {
   return (
     <>
       <Navbar expand="lg" className="navbar-bg " variant="light" fixed="top">
-        <Container >
-            <Navbar.Brand href="/" className="">Diario del pibe</Navbar.Brand>
-              <Navbar.Toggle
-                aria-controls="basic-navbar-nav"
-                className="ms-auto mx-2"
-              />
-              <Navbar.Collapse id="basic-navbar-nav" className="">
-                <Nav className="me-auto contenedor-links">{mostrarBotones()}</Nav>
+        <Container>
+          <Navbar.Brand href="/" className="">
+            Diario del pibe
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className="ms-auto mx-2"
+          />
+          <Navbar.Collapse id="basic-navbar-nav" className="">
+            <Nav className="me-auto contenedor-links">{mostrarBotones()}</Nav>
+            {!props.user ? (
+              <>
+                <Nav>
+                  <Link to="/login" className="nav-link">
+                    Log in
+                  </Link>
+                </Nav>
+              </>
+            ) : (
+              <>
                 <Nav>
                   <NavDropdown
                     id="collasible-nav-dropdown"
@@ -57,7 +54,6 @@ const Navigation = () => {
                     >
                       Perfil
                     </NavDropdown.Item>
-
                     <NavDropdown.Item
                       href="#action/3.4 "
                       className="nddi text-dark"
@@ -66,9 +62,10 @@ const Navigation = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-              </Navbar.Collapse>
+              </>
+            )}
+          </Navbar.Collapse>
         </Container>
-        
       </Navbar>
     </>
   );

@@ -1,23 +1,23 @@
 import React from "react";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 import "./cardprincipal.css";
 
-const CardPrincipal = () => {
+const CardPrincipal = (props) => {
   return (
     <>
       <Card className="bg-dark text-white card-noticia-top mt-2" >
       <a href="#" className="stretched-link"></a>
-      <span className="categoria-card m-1 bg-danger">Economia</span>
+      <span className="categoria-card m-1 bg-danger">{props.noticiaProps.categoria}</span>
         <Card.Img
-          src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          src={props.noticiaProps.imgNoticia}
           alt="Card image"
           className="img-bg-card"
         />
             
         <Card.ImgOverlay className="overlay">
         
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>{props.noticiaProps.titulo}</Card.Title>
 
           <Card.Text className="card-descripcion">
             This is a wider card with supporting text below as a natural lead-in

@@ -30,4 +30,14 @@
     background-color: rgba(0, 0, 0, 0.8);
     border: none;
     
+}.submit-login:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: whitesmoke;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.541);
+    
+}
+.submit-login:active{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.541) !important;
+    transform: scale(0.95);
+   
 }
