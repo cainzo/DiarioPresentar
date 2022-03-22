@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
+import VerNoticia from "./componentes/pages/VerNoticia";
 function App() {
   const [categorias, setCategorias] = useState([
     "salud",
@@ -24,12 +25,7 @@ function App() {
   const user = true;
   const mostrarPaginasCategorias = () => {
     return categorias.map((c) => {
-      return (
-        <Route
-          path={"?categoria=" + c}
-          element={<Home ></Home>}
-        ></Route>
-      );
+      return <Route path={"?categoria=" + c} element={<Home></Home>}></Route>;
     });
   };
 
@@ -48,7 +44,8 @@ function App() {
           exact
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}
-        ></Route>
+        ></Route>{" "}
+        <Route exact path="/vernoticia" element={<VerNoticia></VerNoticia>}></Route>
       </Routes>
     </Router>
   );

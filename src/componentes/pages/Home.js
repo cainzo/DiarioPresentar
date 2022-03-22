@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
-
+import { Link } from "react-router-dom";
 import "./home.css";
 const Home = (props) => {
   const [noticias, setNoticias] = useState([]);
@@ -33,7 +33,7 @@ const Home = (props) => {
     return noticias.map((x) => {
       i++;
       console.log(i);
-      if (i == 1) {
+      if (i === 1) {
         return (
           <>
             <CardPrincipal noticiaProps={x}></CardPrincipal>
@@ -48,12 +48,14 @@ const Home = (props) => {
     return noticias.map((x) => {
       i++;
       console.log(i);
-      if (i == 1) {
+      if (i === 1) {
       } else {
         return (
           <>
           <Col lg={6} md={6} sm={6}>
+          
           <CardPrincipal noticiaProps={x}></CardPrincipal>
+          
           </Col>
             
           </>
