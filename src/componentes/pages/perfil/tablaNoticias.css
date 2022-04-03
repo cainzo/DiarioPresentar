@@ -1,0 +1,11 @@
+.tabla {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: column;
+  }
+  .tituloTabla {
+    display: flex;
+    justify-content: space-between;
+  }
+  

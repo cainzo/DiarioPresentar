@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import "../pages/verNoticia.css";
 const VerNoticia = () => {
   const location = useLocation();
-  console.log(location);
   const noticia = location.state;
   return (
     <Container className="pt-5 mt-5">

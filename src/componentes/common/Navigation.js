@@ -13,8 +13,8 @@ const Navigation = (props) => {
   const mostrarBotones = () => {
     return props.categorias.map((c) => {
       return (
-        <Link to={"?categoria=" + c} className="nav-link">
-          {c.charAt(0).toUpperCase() + c.slice(1)}
+        <Link to={"/?categoria=" + c.categoria} key={c.id}className="nav-link">
+          {c.categoria.charAt(0).toUpperCase() + c.categoria.slice(1)}
         </Link>
       );
     });

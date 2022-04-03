@@ -3,40 +3,43 @@ import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./home.css";
 const Home = (props) => {
   const [noticias, setNoticias] = useState([]);
   const [categoria, setCategoria] = useState([]);
-
+  const location = useLocation();
+  console.log(location.search);
   useEffect(() => {
     const listaNoticias = async () => {
       try {
         //const res = await axios.get(`noticias${categoria ? "?categoria=" + categoria : ""}`,{headers:{token: "Bearer " + TOKENCUANDO TENGA EL LOGIN}});
         //LA LINEA DE ARRIBA ES PARA AGREGARLE TOKEN A LAS REQUEST QUE LE HACEMOS A LA BASEDEDATOS
-        const res = await axios.get(`noticias`);
-        setNoticias(res.data);
+        if(location === ""){
+          const res = await axios.get(`noticias`);
+          setNoticias(res.data);
+        }else{
+          const res = await axios.get("noticias" + location.search);
+          setNoticias(res.data);
+        }
+        
       } catch (err) {
         console.log(err);
       }
     };
 
     listaNoticias();
-  }, [categoria]);
-
-  useEffect(() => {
-    //effect cuando cambie noticias
-    // mostrarNoticias();
-  }, [noticias]);
+  }, [1]);
 
   const mostrarNoticiaa = () => {
     let i = 0;
     return noticias.map((x) => {
       i++;
-      console.log(i);
+
       if (i === 1) {
         return (
           <>
-            <CardPrincipal noticiaProps={x}></CardPrincipal>
+            <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
           </>
         );
       } else {
@@ -47,17 +50,14 @@ const Home = (props) => {
     let i = 0;
     return noticias.map((x) => {
       i++;
-      console.log(i);
-      if (i === 1) {
+    if (i === 1) {
+        
       } else {
         return (
           <>
-          <Col lg={6} md={6} sm={6}>
-          
-          <CardPrincipal noticiaProps={x}></CardPrincipal>
-          
-          </Col>
-            
+            <Col lg={6} md={6} sm={6}>
+              <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
+            </Col>
           </>
         );
       }
@@ -82,11 +82,7 @@ const Home = (props) => {
         <Row>
           <Col lg={9} md={9} sm={9} className=" mt-4 mx-auto">
             {mostrarNoticiaa()}
-            <Row>
-              
-                  {mostrarNoticiaa2()}
-             
-            </Row>
+            <Row>{mostrarNoticiaa2()}</Row>
           </Col>
           <Col lg={3} md={3} sm={3} className="sidebar mt-4 mx-auto">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
