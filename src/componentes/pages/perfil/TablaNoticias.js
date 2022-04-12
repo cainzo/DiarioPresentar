@@ -1,13 +1,14 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './tablaUsuarios.css'
 import { Container, Card, Row, Col, Table, Form } from "react-bootstrap";
+import { deleteNoticia } from '../../../context/noticiaContext/apiCalls';
+import {NoticiaContext} from '../../../context/noticiaContext/NoticiaContext';
 
 
 const TablaNoticias = (props) => {
-    
+    const{noticia, dispatch} = useContext(NoticiaContext)
   const [noticias, setNoticias] = useState([]);
   const [location, setLocation] = useState("");
   const [page, setPage] = useState(1);
@@ -36,7 +37,13 @@ const TablaNoticias = (props) => {
     };
 
     listaNoticias();
-  }, [page, location]);
+  }, [page, location, dispatch]);
+
+
+  const handleDelete = (id) =>{
+   deleteNoticia(id, dispatch)
+   window.location.reload();
+  }
 
   //logica de paginacion para la tabla de noticias
   const mostrarPagination = () => {  
@@ -165,7 +172,7 @@ const TablaNoticias = (props) => {
                       n.categoria.slice(1)}
                   </td>
                   <td>
-                    <div className="btnBorrar">Borrar</div>
+                    <div className="btnBorrar" onClick={()=>handleDelete(n._id)}>Borrar</div>
                     <div className="btnEditar">Editar</div>
                   </td>
                 </tr>

@@ -5,9 +5,9 @@ import CardPrincipal from "../cards/CardPrincipal";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./home.css";
-const Home = (props) => {
+const Home = () => {
   const [noticias, setNoticias] = useState([]);
-  const [categoria, setCategoria] = useState([]);
+
   const location = useLocation();
   console.log(location.search);
   useEffect(() => {
@@ -29,7 +29,7 @@ const Home = (props) => {
     };
 
     listaNoticias();
-  }, [1]);
+  }, [location]);
 
   const mostrarNoticiaa = () => {
     let i = 0;

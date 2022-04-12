@@ -48,12 +48,15 @@ const Navigation = (props) => {
                     id="collasible-nav-dropdown"
                     className="dropdown "
                   >
+                    <Link Link to="/perfil" className="">
                     <NavDropdown.Item
                       href="#action/3.1"
                       className="nddi text-dark"
                     >
                       Perfil
                     </NavDropdown.Item>
+                    </Link>
+                    
                     <NavDropdown.Item
                       href="#action/3.4 "
                       className="nddi text-dark"

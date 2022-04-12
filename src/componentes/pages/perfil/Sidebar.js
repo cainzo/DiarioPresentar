@@ -15,7 +15,7 @@ const sidebar = () => {
         <div className="sidebar">
         <div className="center">
           <ul>
-            <Link to="/" style={{textDecoration: "none"}}>
+            <Link to="/perfil" style={{textDecoration: "none"}}>
             <li>
               <DashboardIcon className="icono"></DashboardIcon>
               <span>Dashboard</span>
@@ -28,7 +28,7 @@ const sidebar = () => {
               <span>Users</span>
             </li>
             </Link>
-            <Link to="/noticias" style={{textDecoration: "none"}}>
+            <Link to="/perfil/nuevaNoticia" style={{textDecoration: "none"}}>
             <li>
               <NewspaperIcon className="icono"></NewspaperIcon>
               <span>Nueva Noticia</span>
@@ -38,12 +38,7 @@ const sidebar = () => {
             <Link to="/" style={{textDecoration: "none"}}>
   
             </Link>
-            <Link to="/" style={{textDecoration: "none"}}>
-            <li>
-              <PeopleIcon className="icono"></PeopleIcon>
-              <span>Perfil</span>
-            </li>
-            </Link>
+
   
             <li>
               <ExitToAppIcon className="icono"></ExitToAppIcon>
