@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Navbar,
@@ -8,7 +8,12 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
+import {AuthContext} from "../../context/authContext/AuthContext";
+import { logout } from "../../context/authContext/AuthActions";
+
 const Navigation = (props) => {
+const {dispatch} = useContext(AuthContext)
+
   useEffect(() => {}, []);
   const mostrarBotones = () => {
     return props.categorias.map((c) => {
@@ -19,13 +24,51 @@ const Navigation = (props) => {
       );
     });
   };
-  //console.log(categorias);
+
+ const  mostrarPerfil = ()=>{
+    if(props.user.isAdmin){
+      return <>
+          <Nav>
+                  <NavDropdown
+                    id="collasible-nav-dropdown"
+                    className="dropdown "
+                  >
+                    <Link Link to="/perfil" className="" style={{textDecoration: 'none'}}>
+                    <NavDropdown.Item
+                      href="#action/3.1"
+                      className="nddi text-dark"
+                    >
+                      Perfil
+                    </NavDropdown.Item>
+                    </Link>
+                    
+                    <NavDropdown.Item onClick={()=>dispatch(logout())} className="nddi text-dark">
+                      Log out
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+      </>
+    }else{
+      return <>
+      <Nav>
+              <NavDropdown
+                id="collasible-nav-dropdown"
+                className="dropdown "
+              >                
+                <NavDropdown.Item onClick={()=>dispatch(logout())} className="nddi text-dark">
+                  Log out
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+  </>
+    }
+  }
   return (
     <>
       <Navbar expand="lg" className="navbar-bg " variant="light" fixed="top">
         <Container>
           <Navbar.Brand href="/" className="">
-            Diario del pibe
+            RollingPost
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
@@ -42,30 +85,7 @@ const Navigation = (props) => {
                 </Nav>
               </>
             ) : (
-              <>
-                <Nav>
-                  <NavDropdown
-                    id="collasible-nav-dropdown"
-                    className="dropdown "
-                  >
-                    <Link Link to="/perfil" className="">
-                    <NavDropdown.Item
-                      href="#action/3.1"
-                      className="nddi text-dark"
-                    >
-                      Perfil
-                    </NavDropdown.Item>
-                    </Link>
-                    
-                    <NavDropdown.Item
-                      href="#action/3.4 "
-                      className="nddi text-dark"
-                    >
-                      Log out
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </>
+              mostrarPerfil()
             )}
           </Navbar.Collapse>
         </Container>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Badge  } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./cardprincipal.css";
 
@@ -9,9 +9,9 @@ const CardPrincipal = (props) => {
       <Link to="/vernoticia" state={props.noticiaProps}>
         <Card className="bg-dark text-white card-noticia-top mt-2">
           <a href="#" className="stretched-link"></a>
-          <span className="categoria-card m-1 bg-danger">
+          <Badge pill className="categoria-card m-1 bg-success">
             {props.noticiaProps.categoria}
-          </span>
+          </Badge>
           <Card.Img
             src={props.noticiaProps.imgNoticia}
             alt="Card image"

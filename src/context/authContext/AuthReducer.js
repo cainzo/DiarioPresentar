@@ -1,5 +1,7 @@
 const AuthReducer = (state, action) => {
   switch (action.type) {
+  
+    //login
     case "LOGIN_START":
       return {
         user: null,

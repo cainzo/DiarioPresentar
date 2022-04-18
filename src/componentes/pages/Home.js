@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import "./home.css";
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
-
   const location = useLocation();
   console.log(location.search);
   useEffect(() => {

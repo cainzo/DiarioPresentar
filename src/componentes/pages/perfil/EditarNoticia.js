@@ -1,121 +1,91 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
-import { campoRequerido, datoRequerido, validarEmail, validarUrl } from "../../validaciones/helpers";
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useContext, useState, useRef } from "react";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { campoRequerido, validarUrl } from "../../validaciones/helpers";
+import { useLocation } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import { NoticiaContext } from "../../../context/noticiaContext/NoticiaContext";
+import { updateNoticia } from "../../../context/noticiaContext/apiCalls";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
-const EditarNoticia = (props) => {
-    const {id} = useParams();
-    const [titulo, setTitulo] = useState('');
-    const [subTitulo, setSubTitulo] = useState('');
-    const [imagenPrincipal, setImagenPrincipal] = useState('');
-    const [desarrollo, setDesarrollo] = useState('');
-    const [autor, setAutor] = useState('');
-    const [tipo, setTipo] = useState("");
-    const [fecha, setFecha] = useState(0);
-    const [fechaGuardar, setFechaGuardar] = useState('');
-    const tituloNoticiaRef = useRef('');
-    const subTituloNoticiaRef = useRef('');
-    const imagenPrincipalNoticiaRef = useRef('');
-    const desarrolloNoticiaRef = useRef('');
-    const autorNoticiaRef = useRef('');
-    const tipoNoticiaRef = useRef(0);
-    const navigation = useNavigate();
-    const URL = 'https://proyectofinal16igrupo2.herokuapp.com/apinoticias' + "/"+ id;
-
-
-useEffect(async()=>{
-        //consutal a la api por el prodcuto que tiene el id que guardamos en la dir
-        try{
-          const repuesta = await fetch(URL);
-          if(repuesta.status === 200){
-            const dato = await repuesta.json();
-            setTitulo(dato.titulo);
-            setSubTitulo(dato.subTitulo);
-            setImagenPrincipal(dato.imagenPrincipal);
-            setDesarrollo(dato.desarrollo);
-            setAutor(dato.autor);
-            setTipo(dato.tipo);
-            setFecha(dato.fecha);
-            setFechaGuardar(dato.fechaGuardar)
-          }else{
     
-          }
-          
-        }catch(error){
-          console.error();
-        }
-      }, []); 
-
-
-      const handleSubmit = async(e) =>{
-        e.preventDefault();
-        if(datoRequerido(tituloNoticiaRef.current.value) && datoRequerido(subTituloNoticiaRef.current.value) && datoRequerido(imagenPrincipalNoticiaRef.current.value) && datoRequerido(desarrolloNoticiaRef.current.value) && datoRequerido(autorNoticiaRef.current.value) && datoRequerido(tipo)){
-           //construir el objeto a enviar a la api
-          
-           try{
-            const noticiaNotificada = {
-              titulo: tituloNoticiaRef.current.value,
-              subTitulo: subTituloNoticiaRef.current.value,
-              imagenPrincipal: imagenPrincipalNoticiaRef.current.value,
-              desarrollo: desarrolloNoticiaRef.current.value,
-              autor: autorNoticiaRef.current.value,
-              tipo: tipo,
-              fecha: fecha,
-              fechaGuardar: fechaGuardar
-            };
-            const respuesta = await fetch(URL,{
-              method: "PUT",
-              headers: {"Content-Type" : "application/json"},
-              body: JSON.stringify(noticiaNotificada)
-            })
-            console.log(respuesta)
-            if(respuesta.status === 200){
-              //cartel para el usuario
-          Swal.fire(
-            'Noticia actualizada',
-            'La noticia fue actualizada correctamente',
-            'success'
-          )
-           navigation("/Perfil");
-           }
-           }catch(error){
-             console.log(error)
-           }
-    
-        }else{
-          //si hay un error, notificarlo
-         
-        }
-      };
-
-    return (
-        <Container className="text-start my-4">
       
-        <Row className="bg-light pb-3">
-          <Col>
-          <h3>Editar noticia</h3>
+export default function EditarNoticia(props) {
+  const navigate = useNavigate()
+  const location = useLocation();
+  const noti = location.state;
+  const [noticia, setNoticia] = useState();
+  const [_id, set_id] = useState();
+  const [titulo, setTitulo] = useState(noti.titulo);
+  const [subtitulo, setSubTitulo] = useState(noti.subtitulo);
+  const [desarrollo, setDesarrollo] = useState(noti.desarrollo);
+  const [imgNoticia, setImgNoticia] = useState(noti.imgNoticia);
+  const [autor, setAutor] = useState(noti.autor);
+  const [categoria, setCategoria] = useState(noti.categoria);
+  const { dispatch } = useContext(NoticiaContext);
+  const tituloNoticiaRef = useRef('');
+  const subTituloNoticiaRef = useRef('');
+  const imgPrincipalNoticiaRef = useRef('');
+  const desarrolloNoticiaRef = useRef('');
+  const autorNoticiaRef = useRef('');
+  const categoriaNoticiaRef = useRef(0);
+
+  useEffect(()=>{
+    setNoticia({
+      titulo: titulo,
+      subtitulo: subtitulo,
+      desarrollo:desarrollo,
+      imgNoticia: imgNoticia,
+      autor: autor,
+      categoria: categoria
+    })
+  },[])
+
+  const handleChange = (e)=>{
+    const value = e.target.value;
+    setNoticia({...noticia, [e.target.name]:value})
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateNoticia(noti._id ,noticia, dispatch)
+    navigate('/perfil');
+  };
+
+  return (
+    <Row className="text-center vh-100 overflow-hidden">
+      <Col lg={2} md={2} xs={12} className="bg-light">
+        {/* container de la sidebar  */}
+        <Container className=" m-0 p-0 pt-5 sticky-top text-start ">
+          <Sidebar></Sidebar>
+        </Container>
+      </Col>
+      <Col lg={10} md={10} xs={12}>
+        <Row className=" p-1">
+          {/*  Form Nueva Noticia */}
+          <Col lg={12} md={12} sm={12} className="mt-5 w-100 text-start">
+            <h3>Editar noticia:</h3>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Titulo de la noticia</Form.Label>
                 <Form.Control type="text" placeholder="" 
-                defaultValue={titulo} ref={tituloNoticiaRef}
+                defaultValue={noti.titulo} ref={tituloNoticiaRef}
+                name="titulo"
+                onChange={handleChange} 
                 onBlur={(e)=>{campoRequerido(e.target)}}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Subtitulo o descripcion breve</Form.Label>
                 <Form.Control type="text" placeholder="" 
-                defaultValue={subTitulo} ref={subTituloNoticiaRef}
-                onChange={(e) => {setSubTitulo(e.target.value);}} 
+                defaultValue={noti.subtitulo} ref={subTituloNoticiaRef}
+                name="subtitulo"
+                onChange={handleChange} 
                 onBlur={(e)=>{campoRequerido(e.target)}}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Imagen principal de la noticia</Form.Label>
                 <Form.Control type="text" placeholder="" 
-                defaultValue={imagenPrincipal} ref={imagenPrincipalNoticiaRef}
-                onChange={(e) => { setImagenPrincipal(e.target.value);}}
+                defaultValue={noti.imgNoticia} ref={imgPrincipalNoticiaRef}
+                name="imgNoticia"
+                onChange={handleChange}
                 onBlur={(e)=>{validarUrl(e.target)}}/>
               </Form.Group>
               <Form.Group
@@ -124,19 +94,21 @@ useEffect(async()=>{
               >
                 <Form.Label>Desarrollo de la noticia</Form.Label>
                 <Form.Control as="textarea" rows={3} 
-                defaultValue={desarrollo} ref={desarrolloNoticiaRef}
-                onChange={(e) => {setDesarrollo(e.target.value);}}
+                defaultValue={noti.desarrollo} ref={desarrolloNoticiaRef}
+                name="desarrollo"
+                onChange={handleChange}
                 onBlur={(e)=>{campoRequerido(e.target)}}/>
               </Form.Group>
-              <Form.Select aria-label="Default select example" value={tipo} onChange={(e)=>{setTipo(e.target.value)}}>
+              <Form.Select aria-label="Default select example" defaultValue={noti.categoria} ref={categoriaNoticiaRef} name="categoria" onChange={handleChange}>
                 <option value="">Seleccione una categoria</option>
                 {props.categorias.map((categoria)=>{return <option value={categoria.categoria}>{categoria.categoria}</option>})}
               </Form.Select>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Firma Autor</Form.Label>
                 <Form.Control type="text" placeholder="" 
-                defaultValue={autor} ref={autorNoticiaRef}
-                onChange={(e) => {setAutor(e.target.value)}}
+                defaultValue={noti.autor} ref={autorNoticiaRef}
+                name="autor"
+                onChange={handleChange}
                 onBlur={(e)=>{campoRequerido(e.target)}}/>
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100">
@@ -144,9 +116,8 @@ useEffect(async()=>{
               </Button>
             </Form>
           </Col>
-          </Row>
-      </Container>
-    );
-};
-
-export default EditarNoticia;
+        </Row>
+      </Col>
+    </Row>
+  );
+}

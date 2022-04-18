@@ -1,30 +1,37 @@
 import Home from "./componentes/pages/Home";
 import Navigation from "./componentes/common/Navigation";
+import Footer from "./componentes/common/Footer";
 import Login from "./componentes/pages/Login";
 import Reg from "./componentes/pages/Reg";
 import PerfilAdmin from "./componentes/pages/perfil/PerfilAdmin";
 import EditarNoticia from "./componentes/pages/perfil/EditarNoticia";
-import { productInputs } from "./formSource";
+import Error404 from "./componentes/pages/Error404";
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {AuthContext} from "./context/authContext/AuthContext";
 import "./App.css";
 import VerNoticia from "./componentes/pages/VerNoticia";
 import NuevaNoticia from "./componentes/pages/perfil/NuevaNoticia";
+import Categorias from "./componentes/pages/perfil/Categorias";
+import axios from "axios"
+
 function App() {
   const { user } = useContext(AuthContext);
-
-  const [noticias, setNoticias] = useState([]);
-  const [categorias, setCategorias] = useState([
-    { id: 0, categoria: "salud" },
-    { id: 1, categoria: "economia" },
-    { id: 2, categoria: "policiales" },
-    { id: 3, categoria: "politica" },
-    { id: 4, categoria: "deportes" },
-    { id: 5, categoria: "actualidad" },
-    { id: 6, categoria: "cine" },
-  ]);
-
+  const [categorias, setCategorias] = useState([]);
+  
+  useEffect(()=>{
+    const getCats = async ()=>{
+      try {
+        const res = await axios.get("/categorias/");
+        setCategorias(res.data);
+        console.log(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    getCats()
+  },[])
   const mostrarPaginasCategorias = () => {
     return categorias.map((c) => {
       return <Route path={"/?categoria=" + c} element={<Home></Home>}></Route>;
@@ -32,10 +39,12 @@ function App() {
   };
 
   return (
+    <>
     <BrowserRouter>
       <Navigation className="" categorias={categorias} user={user}></Navigation>
+      <Routes >
+    <Route exact path="/*" element={<Error404></Error404>}></Route>
 
-      <Routes>
         <Route path="/">
         <Route
             index
@@ -45,7 +54,7 @@ function App() {
         <Route path="/perfil">
           <Route
             index
-            element={<PerfilAdmin categorias={categorias}></PerfilAdmin>}
+            element={ user ? user.isAdmin? <PerfilAdmin categorias={categorias}></PerfilAdmin>:<Navigate to="/"/> : <Navigate to="/"/>}
           ></Route>
           <Route path="/perfil/nuevaNoticia">
             <Route
@@ -53,10 +62,21 @@ function App() {
               element={<NuevaNoticia categorias={categorias}></NuevaNoticia>}
             ></Route>
           </Route>
+          <Route path="/perfil/editarNoticia/:nId">
+            <Route
+              index
+              element={<EditarNoticia categorias={categorias}> </EditarNoticia>}
+            ></Route>
+          </Route>
+          <Route path="/perfil/categorias">
+            <Route
+              index
+              element={<Categorias categorias={categorias}> </Categorias>}
+            ></Route>
+          </Route>
         </Route>
         {mostrarPaginasCategorias()}
         <Route
-          exact
           path="/registro"
           element={!user ? <Reg /> : <Navigate to="/" />}
         ></Route>
@@ -71,7 +91,10 @@ function App() {
           element={<VerNoticia></VerNoticia>}
         ></Route>
       </Routes>
+    <Footer></Footer>
+
     </BrowserRouter>
+    </>
   );
 }
 

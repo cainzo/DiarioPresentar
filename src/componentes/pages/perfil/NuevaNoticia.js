@@ -1,40 +1,38 @@
-import { useEffect, useState } from "react";
-import { Container, Card, Row, Col, Table, Form, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useState, useContext } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 import Sidebar from "./Sidebar";
-import { campoRequerido, datoRequerido, validarEmail, validarUrl } from "../../validaciones/helpers";
-import Swal from "sweetalert2";
+import {campoRequerido, validarUrl} from "../../validaciones/helpers";
 import { useNavigate } from "react-router-dom";
-
-import "./perfilAdmin.css";
-
 import "./nuevaNoticia.css";
 import React from "react";
+import { NoticiaContext } from "../../../context/noticiaContext/NoticiaContext";
+import { crearNoticia } from "../../../context/noticiaContext/apiCalls";
 
 const NuevaNoticia = (props) => {
-    const [titulo, setTitulo] = useState('');
-    const [subTitulo, setSubTitulo] = useState('');
-    const [imagenPrincipal, setImagenPrincipal] = useState('');
-    const [desarrollo, setDesarrollo] = useState('');
-    const [autor, setAutor] = useState('');
-    const [tipo, setTipo] = useState('');
-    const navigation = useNavigate();
-    
-  
-    useEffect(() => {
+  const [noticia, setNoticia] = useState();
+ 
+  const navigate = useNavigate();
+  const { dispatch } = useContext(NoticiaContext);
 
-
-       
-    }, []);
-    const handleSubmit = (e)=>{
-      e.preventDefault();
-
-
-      
-    }
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setNoticia({ ...noticia, [e.target.name]: value });
+  };
+  console.log(noticia);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    crearNoticia(noticia, dispatch);
+    navigate("/perfil");
+  };
 
   return (
-    <Row className="text-center vh-100 overflow-hidden">
+    <Row className="text-center ">
       <Col lg={2} md={2} xs={12} className="bg-light">
         {/* container de la sidebar  */}
         <Container className=" m-0 p-0 pt-5 sticky-top text-start ">
@@ -46,7 +44,8 @@ const NuevaNoticia = (props) => {
           {/*  Form Nueva Noticia */}
           <Col lg={12} md={12} sm={12} className="mt-5 w-100 text-start">
             <h3>Crear noticia:</h3>
-            <Form className="m-5">
+
+            <Form className="m-5" onSubmit={handleSubmit}>
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
@@ -55,9 +54,8 @@ const NuevaNoticia = (props) => {
                 <Form.Control
                   type="text"
                   placeholder=""
-                  onChange={(e) => {
-                    setTitulo(e.target.value);
-                  }}
+                  name="titulo"
+                  onChange={handleChange}
                   onBlur={(e) => {
                     campoRequerido(e.target);
                   }}
@@ -71,9 +69,8 @@ const NuevaNoticia = (props) => {
                 <Form.Control
                   type="text"
                   placeholder=""
-                  onChange={(e) => {
-                    setSubTitulo(e.target.value);
-                  }}
+                  name="subtitulo"
+                  onChange={handleChange}
                   onBlur={(e) => {
                     campoRequerido(e.target);
                   }}
@@ -86,10 +83,9 @@ const NuevaNoticia = (props) => {
                 <Form.Label>Imagen principal de la noticia</Form.Label>
                 <Form.Control
                   type="text"
+                  name="imgNoticia"
                   placeholder=""
-                  onChange={(e) => {
-                    setImagenPrincipal(e.target.value);
-                  }}
+                  onChange={handleChange}
                   onBlur={(e) => {
                     validarUrl(e.target);
                   }}
@@ -102,10 +98,9 @@ const NuevaNoticia = (props) => {
                 <Form.Label>Desarrollo de la noticia</Form.Label>
                 <Form.Control
                   as="textarea"
+                  name="desarrollo"
                   rows={3}
-                  onChange={(e) => {
-                    setDesarrollo(e.target.value);
-                  }}
+                  onChange={handleChange}
                   onBlur={(e) => {
                     campoRequerido(e.target);
                   }}
@@ -113,15 +108,15 @@ const NuevaNoticia = (props) => {
               </Form.Group>
               <Form.Select
                 aria-label="Default select example"
-                onChange={(e) => {
-                  setTipo(e.target.value);
-                }}
+                name="categoria"
+                onChange={handleChange}
               >
                 <option value="">Seleccione una categoria</option>
                 {props.categorias.map((categoria) => {
                   return (
-                    <option value={categoria.id}>
-                      {categoria.categoria.charAt(0).toUpperCase() + categoria.categoria.slice(1)}
+                    <option value={categoria.categoria}>
+                      {categoria.categoria.charAt(0).toUpperCase() +
+                        categoria.categoria.slice(1)}
                     </option>
                   );
                 })}
@@ -134,9 +129,8 @@ const NuevaNoticia = (props) => {
                 <Form.Control
                   type="text"
                   placeholder=""
-                  onChange={(e) => {
-                    setAutor(e.target.value);
-                  }}
+                  name="autor"
+                  onChange={handleChange}
                   onBlur={(e) => {
                     campoRequerido(e.target);
                   }}

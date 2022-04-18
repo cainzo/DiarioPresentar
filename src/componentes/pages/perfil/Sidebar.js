@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { useContext} from "react";
+
 import "./sidebar.css";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import SettingsIcon from "@mui/icons-material/Settings";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
+import {AuthContext} from "../../../context/authContext/AuthContext";
+import { logout } from "../../../context/authContext/AuthActions";
 
+const Sidebar = () => {
+const {dispatch} = useContext(AuthContext)
 
-const sidebar = () => {
     return (
         <div className="sidebar">
         <div className="center">
-          <ul>
+          <ul className="ul-sidebar">
             <Link to="/perfil" style={{textDecoration: "none"}}>
-            <li>
+            <li className="li-sidebar">
               <DashboardIcon className="icono"></DashboardIcon>
               <span>Dashboard</span>
             </li>
             </Link>
-            <p className="titulos">Listas</p>
-            <Link to="/users" style={{textDecoration: "none"}}>
-            <li>
+            <p className="titulos">Opciones</p>
+            <Link to="/perfil/categorias" style={{textDecoration: "none"}}>
+            <li className="li-sidebar">
               <SupervisedUserCircleIcon className="icono"></SupervisedUserCircleIcon>
-              <span>Users</span>
+              <span>Categorias</span>
             </li>
             </Link>
             <Link to="/perfil/nuevaNoticia" style={{textDecoration: "none"}}>
-            <li>
+            <li className="li-sidebar">
               <NewspaperIcon className="icono"></NewspaperIcon>
               <span>Nueva Noticia</span>
             </li>
@@ -40,8 +41,8 @@ const sidebar = () => {
             </Link>
 
   
-            <li>
-              <ExitToAppIcon className="icono"></ExitToAppIcon>
+            <li className="li-sidebar" onClick={()=>dispatch(logout())}>
+              <ExitToAppIcon className="icono" ></ExitToAppIcon>
               <span>Logout</span>
             </li>
           </ul>
@@ -50,4 +51,4 @@ const sidebar = () => {
     );
 };
 
-export default sidebar;
+export default Sidebar;

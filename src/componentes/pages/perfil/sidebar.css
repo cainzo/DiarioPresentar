@@ -13,7 +13,7 @@
     color: #888;
     margin-left: 10px;
   }
-  ul{
+  .ul-sidebar{
     list-style: none;
     padding: 0px;
     margin: 0px;
@@ -26,13 +26,13 @@
     margin-top: 15px;
     margin-bottom: 5px;
   }
-  li{
+.li-sidebar{
       display: flex;
       align-items: center;
       padding: 5px;
       cursor: pointer;
   }
-  li:hover{
+.li-sidebar:hover{
       
       background-color: #e7e7e7;
   }

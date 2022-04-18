@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './tablaUsuarios.css'
-import { Container, Card, Row, Col, Table, Form } from "react-bootstrap";
+import { Container,  Table, Form } from "react-bootstrap";
 import { deleteNoticia } from '../../../context/noticiaContext/apiCalls';
-import {NoticiaContext} from '../../../context/noticiaContext/NoticiaContext';
+import { NoticiaContext } from '../../../context/noticiaContext/NoticiaContext';
+
 
 
 const TablaNoticias = (props) => {
@@ -42,7 +44,6 @@ const TablaNoticias = (props) => {
 
   const handleDelete = (id) =>{
    deleteNoticia(id, dispatch)
-   window.location.reload();
   }
 
   //logica de paginacion para la tabla de noticias
@@ -130,7 +131,9 @@ const TablaNoticias = (props) => {
         <Container className="w-100  tabla m-0 p-0">
         <div className="tituloTabla">
           <h4>Noticias:</h4>
+          <Link to="/perfil/nuevaNoticia">
           <button className="agregarNoticia">Agregar nueva noticia</button>
+          </Link>
         </div>
         <Form.Select
           aria-label=""
@@ -173,7 +176,9 @@ const TablaNoticias = (props) => {
                   </td>
                   <td>
                     <div className="btnBorrar" onClick={()=>handleDelete(n._id)}>Borrar</div>
+                    <Link to={{ pathname: "editarNoticia/" + n._id}} style={{textDecoration: 'none'}} state={n}>
                     <div className="btnEditar">Editar</div>
+                    </Link>
                   </td>
                 </tr>
               );

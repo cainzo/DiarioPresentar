@@ -6,3 +6,7 @@ npm i react-router-dom
 npm install axios
 npm install @mui/icons-material
 npm install @mui/icons-material
+npm install sweetalert2
+npm i bcrypt
+npm install draft-js
+slate slate-react

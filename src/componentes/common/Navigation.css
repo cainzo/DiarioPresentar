@@ -22,14 +22,14 @@
     
 }
 
-.navegar-links:hover{
+.nav-link:hover{
     
     transform: scale(1.1);
 }
 
 
 .dropdown{
-    background-image: url("https://images.pexels.com/photos/9898825/pexels-photo-9898825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") ;
+    background-image: url("https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png") ;
     height: 35px;
     width: 35px;
     border-radius: 5px;

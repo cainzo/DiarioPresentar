@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import {Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {login } from "../../context/authContext/apiCalls";
 import {AuthContext} from "../../context/authContext/AuthContext";
 import './Login.css';
@@ -30,7 +31,7 @@ const Loginreg = () => {
         </Button>
         <Form.Group className="mt-1 mx-2">
         <Form.Text className="text-light">
-            No estas registrado? <a href="#">Click Aqui!</a>
+            No estas registrado? <Link to="/registro/">Click Aqui!</Link>
           </Form.Text>
         </Form.Group>
       </Form>
