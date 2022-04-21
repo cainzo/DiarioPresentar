@@ -33,7 +33,7 @@ export const getNoticias = async (dispatch) => {
   }
 };
 //POST crear nueva noticia
-export const crearNoticia = async (noticia, dispatch) => {
+export const crearNoticia = async (noticia, dispatch ) => {
 
   crearNoticiaStart();
 
@@ -67,13 +67,19 @@ export const crearNoticia = async (noticia, dispatch) => {
       }
     });
   } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: err.response.data.messages,
+    })
     crearNoticiaFailure();
   }
 };
+
+
 //UPDATE
 export const updateNoticia = async (id, noticia, dispatch) => {
   updateNoticiaStart();
-
   Swal.fire({
     title: "Guardar los cambios?",
     text: "Esta accion no va a poder ser revertida.",
@@ -91,12 +97,17 @@ export const updateNoticia = async (id, noticia, dispatch) => {
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
-
         updateNoticiaSuccess(res.data);
-        Swal.fire("Noticia editada, redireccionando!", "", "success");
+        Swal.fire("Noticia editada", "", "success");
+       
       } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          text: err.response.data.messages,
+        })
         updateNoticiaFailure();
       }
+     
     }
   });
 };
@@ -125,6 +136,10 @@ export const deleteNoticia = async (id, dispatch) => {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         window.location.reload();
       } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          text: err.response.data.menssages,
+        })
         deleteNoticiaFailure();
       }
     }

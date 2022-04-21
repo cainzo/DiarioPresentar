@@ -18,7 +18,7 @@ const {dispatch} = useContext(AuthContext)
   const mostrarBotones = () => {
     return props.categorias.map((c) => {
       return (
-        <Link to={"/?categoria=" + c.categoria} key={c.id}className="nav-link">
+        <Link to={"/?categoria=" + c.categoria} key={c._id} className="nav-link">
           {c.categoria.charAt(0).toUpperCase() + c.categoria.slice(1)}
         </Link>
       );
@@ -33,16 +33,19 @@ const {dispatch} = useContext(AuthContext)
                     id="collasible-nav-dropdown"
                     className="dropdown "
                   >
-                    <Link Link to="/perfil" className="" style={{textDecoration: 'none'}}>
-                    <NavDropdown.Item
-                      href="#action/3.1"
+                    
+                    <NavDropdown.Item 
+   
+                      href="/perfil"
                       className="nddi text-dark"
                     >
                       Perfil
                     </NavDropdown.Item>
-                    </Link>
                     
-                    <NavDropdown.Item onClick={()=>dispatch(logout())} className="nddi text-dark">
+                    
+                    <NavDropdown.Item 
+
+                    onClick={()=>dispatch(logout())} className="nddi text-dark">
                       Log out
                     </NavDropdown.Item>
                   </NavDropdown>

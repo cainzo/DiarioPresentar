@@ -63,8 +63,14 @@ export const crearCategoria = async (categoria, dispatch) => {
 
         }
       });
+     
       window.location.reload();
     } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        text: err.response.data.messages,
+      })
+     // window.alert(err.response.data.messages)
       crearCategoriaFailure();
     }
   };
@@ -73,7 +79,7 @@ export const crearCategoria = async (categoria, dispatch) => {
     deleteCategoriaStart();
   
     Swal.fire({
-      title: "Esta seguro de borrar la noticia?",
+      title: "Esta seguro de borrar la categoria?",
       text: "Esta accion no va a poder ser revertida.",
       icon: "warning",
       showCancelButton: true,
@@ -91,8 +97,13 @@ export const crearCategoria = async (categoria, dispatch) => {
           });
           deleteCategoriaSuccess(id);
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
+
           window.location.reload();
         } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            text: err.response.data,
+          })
           deleteCategoriaFailure();
         }
       }

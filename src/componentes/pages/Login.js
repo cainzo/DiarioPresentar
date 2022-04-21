@@ -9,9 +9,12 @@ const Loginreg = () => {
   const [email, setEmail]= useState("");
   const [password, setPassword] = useState("");
   const {isFetching, dispatch} =useContext(AuthContext)
+  let errorr = '';
+  
   const handleLogin = (e)=>{
     e.preventDefault();
     login({email, password}, dispatch)
+    
   }
   return (
     <div className="login-page bg-danger" >

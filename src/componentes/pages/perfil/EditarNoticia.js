@@ -5,15 +5,15 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { NoticiaContext } from "../../../context/noticiaContext/NoticiaContext";
 import { updateNoticia } from "../../../context/noticiaContext/apiCalls";
-import { useNavigate } from "react-router-dom";
+
     
       
 export default function EditarNoticia(props) {
-  const navigate = useNavigate()
+
   const location = useLocation();
   const noti = location.state;
   const [noticia, setNoticia] = useState();
-  const [_id, set_id] = useState();
+
   const [titulo, setTitulo] = useState(noti.titulo);
   const [subtitulo, setSubTitulo] = useState(noti.subtitulo);
   const [desarrollo, setDesarrollo] = useState(noti.desarrollo);
@@ -46,7 +46,7 @@ export default function EditarNoticia(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateNoticia(noti._id ,noticia, dispatch)
-    navigate('/perfil');
+
   };
 
   return (

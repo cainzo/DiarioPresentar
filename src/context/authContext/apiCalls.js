@@ -28,11 +28,16 @@ export const login = async (user,dispatch)=>{
         }).then((result) => {
           /* Read more about handling dismissals below */
           if (result.dismiss === Swal.DismissReason.timer) {
-            console.log("I was closed by the timer");
           }
         });
     } catch (err) {
-        dispatch(loginFailure())
+     // window.alert(err.response.data)
+      Swal.fire({
+        icon: 'error',
+        text: err.response.data,
+      })
+      dispatch(loginFailure())
+
     }
 };
 

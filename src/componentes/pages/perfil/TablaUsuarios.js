@@ -36,7 +36,7 @@ const TablaUsuarios = () => {
       if (pageUsuarios <= 5) {
         return [...Array(pagesUsuarios)].map((_, idx) => {
           return (
-            <>
+          
               <button
                 key={idx + 1}
                 onClick={() => setPageUsuarios(idx + 1)}
@@ -45,14 +45,14 @@ const TablaUsuarios = () => {
               >
                 {idx + 1}
               </button>
-            </>
+           
           );
         });
       } else {
         return [...Array(pagesUsuarios)].map((_, idx) => {
           if (idx === 0 || idx >= pagesUsuarios - 1) {
             return (
-              <>
+            
                 <button
                   key={idx + 1}
                   onClick={() => setPageUsuarios(idx + 1)}
@@ -61,7 +61,7 @@ const TablaUsuarios = () => {
                 >
                   {idx + 1}
                 </button>
-              </>
+             
             );
           }
         });
@@ -70,7 +70,7 @@ const TablaUsuarios = () => {
       if (pageUsuarios <= 5) {
         return [...Array(5)].map((_, idx) => {
           return (
-            <>
+           
               <button
                 key={idx + 1}
                 onClick={() => setPageUsuarios(idx + 1)}
@@ -79,7 +79,7 @@ const TablaUsuarios = () => {
               >
                 {idx + 1}
               </button>
-            </>
+           
           );
         });
       } else {
@@ -92,7 +92,7 @@ const TablaUsuarios = () => {
             idx === pageUsuarios
           ) {
             return (
-              <>
+             
                 <button
                   key={idx + 1}
                   onClick={() => setPageUsuarios(idx + 1)}
@@ -101,7 +101,7 @@ const TablaUsuarios = () => {
                 >
                   {idx + 1}
                 </button>
-              </>
+              
             );
           }
         });
@@ -128,7 +128,7 @@ const TablaUsuarios = () => {
             <tbody>
               {usuarios.map((x) => {
                 return (
-                  <tr key={x.id} >
+                  <tr key={x._id} >
                     <td >{x.email}</td>
                     <td>{x.createdAt} </td>
                   </tr>

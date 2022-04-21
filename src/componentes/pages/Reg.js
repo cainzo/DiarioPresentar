@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, {useState, } from "react";
-import { Container, Card, Row, Col, Form, Button } from "react-bootstrap";
+import {Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import './Reg.css';
+import Swal from "sweetalert2";
 
 const Reg = () => {
   const [email, setEmail] = useState("");
@@ -12,12 +13,13 @@ const Reg = () => {
     e.preventDefault()
     try {
       await axios.post("/auth/register", {email, password})
-      console.log("registrado correctamente")
-      console.log("redireccionando a la pagina de login")
+      
       navigate('/login');
     } catch (error) {
-      console.log("no registrado" + error)
-      
+     Swal.fire({
+      icon: 'error',
+      text:error.response.data.messages,
+    })
     }
   };
   return (

@@ -2,18 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
-import { Link } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
 import "./home.css";
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
   const location = useLocation();
-  console.log(location.search);
   useEffect(() => {
     const listaNoticias = async () => {
       try {
-        //const res = await axios.get(`noticias${categoria ? "?categoria=" + categoria : ""}`,{headers:{token: "Bearer " + TOKENCUANDO TENGA EL LOGIN}});
-        //LA LINEA DE ARRIBA ES PARA AGREGARLE TOKEN A LAS REQUEST QUE LE HACEMOS A LA BASEDEDATOS
+
         if(location === ""){
           const res = await axios.get(`noticias`);
           setNoticias(res.data);
@@ -37,9 +35,9 @@ const Home = () => {
 
       if (i === 1) {
         return (
-          <>
+
             <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
-          </>
+
         );
       } else {
       }
@@ -53,28 +51,25 @@ const Home = () => {
         
       } else {
         return (
-          <>
-            <Col lg={6} md={6} sm={6}>
+
+            <Col key={x._id} lg={6} md={6} sm={6}>
               <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
             </Col>
-          </>
+
         );
       }
     });
   };
   return (
-    <div className="main">
-      <Card className="w-100 bg-dark p-0 m-0 shadow">
+    	<>
+      <Card className="w-100 bg-dark  shadow">
         <Card.Img
           src="https://images.pexels.com/photos/3953481/pexels-photo-3953481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           alt="Card image"
           className="w-100 img-titulado-home m-0 p-0"
         />
-        <Card.ImgOverlay className="titulado-home">
-          <Card.Text className="text-center ">
+        <Card.ImgOverlay className="titulado-home" >
             <h1 className="display-1 mb-0 pb-0 titulo">RollingPost</h1>
-            <h6 className="mt-0 pt-0 subT">El mundo a tu alcance:</h6>
-          </Card.Text>
         </Card.ImgOverlay>
       </Card>
       <Container className="main">
@@ -110,7 +105,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+      </>
   );
 };
 

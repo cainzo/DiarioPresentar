@@ -17,7 +17,7 @@ const Categorias = (props) => {
     const handleChange = (e)=>{
         const value = e.target.value;
         setCategoria({...categoria, [e.target.name]:value})
-        console.log(categoria)
+   
 
       };
     const handleSubmit= (e)=>{
@@ -27,26 +27,26 @@ const Categorias = (props) => {
 
   return (
     <Row className="text-center">
-      <Col lg={1} md={2} xs={12} className="bg-light">
+      <Col lg={2} md={2} xs={12} className="bg-light">
         {/* container de la sidebar  */}
         <Container className=" m-0 p-0 pt-5 sticky-top text-start ">
           <Sidebar></Sidebar>
         </Container>
       </Col>
-      <Col lg={4} md={12} xs={12} className="bg-primary mx-auto">
-        <Row className=" p-1 bg-dark">
+      <Col lg={4} md={12} xs={12} className=" mx-auto p-5">
+        <Row className=" p-1 ">
           <Col
             lg={12}
             md={12}
             sm={12}
-            className="mt-5 w-100 text-start bg-warning"
+            className="mt-5 w-100 text-start "
           >
             {/*  nueva pagica de categorias */}
             <h3>Categorias:</h3>
             <ListGroup>
               {props.categorias.map((categoria) => (
                 <ItemsCategorias
-                  key={categoria.id}
+                  key={categoria._id}
                   categoria={categoria}
                 ></ItemsCategorias>
               ))}
@@ -54,13 +54,13 @@ const Categorias = (props) => {
           </Col>
         </Row>
       </Col>
-      <Col lg={4} md={12} xs={12} className="bg-danger mx-auto">
-        <Row className=" p-1 bg-dark">
+      <Col lg={4} md={12} xs={12} className=" mx-auto p-5">
+        <Row className=" p-1 ">
           <Col
             lg={12}
             md={12}
             sm={12}
-            className="mt-5 w-100 text-start bg-warning"
+            className="mt-5 w-100 text-start "
           >
             {/*  nueva pagica de categorias */}
             <h3>Crear nueva categoria:</h3>

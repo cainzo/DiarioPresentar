@@ -8,9 +8,9 @@ const CardPrincipal = (props) => {
    
       <Link to="/vernoticia" state={props.noticiaProps}>
         <Card className="bg-dark text-white card-noticia-top mt-2">
-          <a href="#" className="stretched-link"></a>
+          
           <Badge pill className="categoria-card m-1 bg-success">
-            {props.noticiaProps.categoria}
+            {props.noticiaProps.categoria.charAt(0).toUpperCase() + props.noticiaProps.categoria.slice(1)}
           </Badge>
           <Card.Img
             src={props.noticiaProps.imgNoticia}

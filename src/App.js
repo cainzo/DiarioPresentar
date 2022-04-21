@@ -6,7 +6,6 @@ import Reg from "./componentes/pages/Reg";
 import PerfilAdmin from "./componentes/pages/perfil/PerfilAdmin";
 import EditarNoticia from "./componentes/pages/perfil/EditarNoticia";
 import Error404 from "./componentes/pages/Error404";
-
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import {AuthContext} from "./context/authContext/AuthContext";
@@ -25,7 +24,7 @@ function App() {
       try {
         const res = await axios.get("/categorias/");
         setCategorias(res.data);
-        console.log(res.data)
+
       } catch (error) {
         console.log(error)
       }
@@ -34,14 +33,14 @@ function App() {
   },[])
   const mostrarPaginasCategorias = () => {
     return categorias.map((c) => {
-      return <Route path={"/?categoria=" + c} element={<Home></Home>}></Route>;
+      return <Route key={c._id} path={"/?categoria=" + c} element={<Home ></Home>}></Route>;
     });
   };
 
   return (
     <>
     <BrowserRouter>
-      <Navigation className="" categorias={categorias} user={user}></Navigation>
+    <Navigation className="" categorias={categorias} user={user}></Navigation>
       <Routes >
     <Route exact path="/*" element={<Error404></Error404>}></Route>
 
@@ -51,7 +50,7 @@ function App() {
             element={<Home></Home>}
           ></Route>
         </Route>
-        <Route path="/perfil">
+        <Route path="/perfil" >
           <Route
             index
             element={ user ? user.isAdmin? <PerfilAdmin categorias={categorias}></PerfilAdmin>:<Navigate to="/"/> : <Navigate to="/"/>}
@@ -59,19 +58,19 @@ function App() {
           <Route path="/perfil/nuevaNoticia">
             <Route
               index
-              element={<NuevaNoticia categorias={categorias}></NuevaNoticia>}
+              element={ user ? user.isAdmin?  <NuevaNoticia categorias={categorias}></NuevaNoticia>:<Navigate to="/"/> : <Navigate to="/"/>}
             ></Route>
           </Route>
           <Route path="/perfil/editarNoticia/:nId">
             <Route
               index
-              element={<EditarNoticia categorias={categorias}> </EditarNoticia>}
+              element={user ? user.isAdmin? <EditarNoticia categorias={categorias}> </EditarNoticia>:<Navigate to="/"/> : <Navigate to="/"/>}
             ></Route>
           </Route>
           <Route path="/perfil/categorias">
             <Route
               index
-              element={<Categorias categorias={categorias}> </Categorias>}
+              element={ user ? user.isAdmin? <Categorias categorias={categorias}> </Categorias>:<Navigate to="/"/> : <Navigate to="/"/>}
             ></Route>
           </Route>
         </Route>

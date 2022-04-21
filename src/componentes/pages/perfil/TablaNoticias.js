@@ -53,7 +53,7 @@ const TablaNoticias = (props) => {
         if (page <= 5) {
           return [...Array(pages)].map((_, idx) => {
             return (
-              <>
+          
                 <button
                   key={idx + 1}
                   onClick={() => setPage(idx + 1)}
@@ -62,14 +62,14 @@ const TablaNoticias = (props) => {
                 >
                   {idx + 1}
                 </button>
-              </>
+       
             );
           });
         } else {
           return [...Array(pages)].map((_, idx) => {
             if (idx === 0 || idx >= pages - 1) {
               return (
-                <>
+         
                   <button
                     key={idx + 1}
                     onClick={() => setPage(idx + 1)}
@@ -78,7 +78,7 @@ const TablaNoticias = (props) => {
                   >
                     {idx + 1}
                   </button>
-                </>
+       
               );
             }
           });
@@ -87,7 +87,7 @@ const TablaNoticias = (props) => {
         if (page <= 5) {
           return [...Array(5)].map((_, idx) => {
             return (
-              <>
+        
                 <button
                   key={idx + 1}
                   onClick={() => setPage(idx + 1)}
@@ -96,7 +96,7 @@ const TablaNoticias = (props) => {
                 >
                   {idx + 1}
                 </button>
-              </>
+     
             );
           });
         } else {
@@ -109,7 +109,7 @@ const TablaNoticias = (props) => {
               idx === page
             ) {
               return (
-                <>
+                
                   <button
                     key={idx + 1}
                     onClick={() => setPage(idx + 1)}
@@ -118,7 +118,7 @@ const TablaNoticias = (props) => {
                   >
                     {idx + 1}
                   </button>
-                </>
+              
               );
             }
           });
@@ -146,7 +146,7 @@ const TablaNoticias = (props) => {
           <option value="">Filtrar por categoria</option>
           {props.categorias.map((categoria) => {
             return (
-              <option value={categoria.categoria}>
+              <option key={categoria._id} value={categoria.categoria}>
                 {categoria.categoria.charAt(0).toUpperCase() +
                   categoria.categoria.slice(1)}
               </option>
@@ -166,7 +166,7 @@ const TablaNoticias = (props) => {
           <tbody>
             {noticias.map((n) => {
               return (
-                <tr key={n.id}>
+                <tr key={n._id}>
                   <td>{n.titulo} </td>
                   <td>{n.autor} </td>
                   <td>{n.createdAt} </td>
