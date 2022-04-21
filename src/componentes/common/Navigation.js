@@ -1,74 +1,97 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import buscar from "../../img/buscar.svg";
 import {
   Navbar,
   Nav,
   Container,
-  NavDropdown,
-  Modal,
-  Button,
-  Image,
-  Row,
-  Col,
+  NavDropdown
 } from "react-bootstrap";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navigation.css";
-const Navigation = () => {
-  const [categorias, setCategorias] = useState([
-    "Salud",
-    "Economia",
-    "Policiales",
-    "Politica",
-    "Deportes",
-    "Actualidad",
-    "Cine",
-  ]);
+import {AuthContext} from "../../context/authContext/AuthContext";
+import { logout } from "../../context/authContext/AuthActions";
+
+const Navigation = (props) => {
+const {dispatch} = useContext(AuthContext)
+
   useEffect(() => {}, []);
   const mostrarBotones = () => {
-    return categorias.map((c) => {
+    return props.categorias.map((c) => {
       return (
-        <Nav.Link href={c} className="navegar-links">
-          {c}
-        </Nav.Link>
+        <Link to={"/?categoria=" + c.categoria} key={c._id} className="nav-link">
+          {c.categoria.charAt(0).toUpperCase() + c.categoria.slice(1)}
+        </Link>
       );
     });
   };
-  //console.log(categorias);
-  return (
-    <>
-      <Navbar expand="lg" className="navbar-bg " variant="light" fixed="top">
-        <Container >
-            <Navbar.Brand href="/" className="">Diario del pibe</Navbar.Brand>
-              <Navbar.Toggle
-                aria-controls="basic-navbar-nav"
-                className="ms-auto mx-2"
-              />
-              <Navbar.Collapse id="basic-navbar-nav" className="">
-                <Nav className="me-auto contenedor-links">{mostrarBotones()}</Nav>
-                <Nav>
+
+ const  mostrarPerfil = ()=>{
+    if(props.user.isAdmin){
+      return <>
+          <Nav>
                   <NavDropdown
                     id="collasible-nav-dropdown"
                     className="dropdown "
                   >
-                    <NavDropdown.Item
-                      href="#action/3.1"
+                    
+                    <NavDropdown.Item 
+   
+                      href="/perfil"
                       className="nddi text-dark"
                     >
                       Perfil
                     </NavDropdown.Item>
+                    
+                    
+                    <NavDropdown.Item 
 
-                    <NavDropdown.Item
-                      href="#action/3.4 "
-                      className="nddi text-dark"
-                    >
+                    onClick={()=>dispatch(logout())} className="nddi text-dark">
                       Log out
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-              </Navbar.Collapse>
+      </>
+    }else{
+      return <>
+      <Nav>
+              <NavDropdown
+                id="collasible-nav-dropdown"
+                className="dropdown "
+              >                
+                <NavDropdown.Item onClick={()=>dispatch(logout())} className="nddi text-dark">
+                  Log out
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+  </>
+    }
+  }
+  return (
+    <>
+      <Navbar expand="lg" className="navbar-bg " variant="light" fixed="top">
+        <Container>
+          <Navbar.Brand href="/" className="">
+            RollingPost
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className="ms-auto mx-2"
+          />
+          <Navbar.Collapse id="basic-navbar-nav" className="">
+            <Nav className="me-auto contenedor-links">{mostrarBotones()}</Nav>
+            {!props.user ? (
+              <>
+                <Nav>
+                  <Link to="/login" className="nav-link">
+                    Log in
+                  </Link>
+                </Nav>
+              </>
+            ) : (
+              mostrarPerfil()
+            )}
+          </Navbar.Collapse>
         </Container>
-        
       </Navbar>
     </>
   );

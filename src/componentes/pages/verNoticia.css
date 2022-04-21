@@ -1,0 +1,30 @@
+.img{
+    object-fit:cover;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    max-height: 650px;
+}
+
+.categoria{
+    color: rgb(66, 66, 66);   
+    text-transform: capitalize;
+    margin-top: 0px;
+}
+.titulo{
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.subtitulo{
+    margin-top: 20px;
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+.desarrollo{
+    margin-top: 50px;
+}
+body{
+    background-color: rgb(255, 255, 255);
+
+}

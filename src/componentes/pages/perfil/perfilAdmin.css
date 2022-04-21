@@ -1,0 +1,57 @@
+body{
+  padding-top: 20px;
+}
+.tabla {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-direction: column;
+}
+.tituloTabla {
+  display: flex;
+  justify-content: space-between;
+}
+
+.agregarNoticia {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: green;
+  border-radius: 5px;
+  border: 1px solid green;
+
+  background-color: rgba(0, 128, 0, 0.178);
+}
+
+.select {
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+.btnBorrar {
+  font-size: 16px;
+  cursor: pointer;
+  color: crimson;
+  border-radius: 5px;
+  margin: 2px 0px;
+  background-color: rgba(128, 0, 0, 0.178);
+}
+.btnEditar {
+  font-size: 16px;
+  cursor: pointer;
+  color: goldenrod;
+  border-radius: 5px;
+  margin: 2px 0px;
+  background-color: rgba(233, 221, 116, 0.329);
+}
+
+.btnPag{
+  justify-content: center;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+ background-color: rgba(107, 107, 107, 0.205);
+  margin: 5px;
+}
+
+
+
