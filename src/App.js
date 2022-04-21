@@ -38,16 +38,6 @@ function App() {
   };
 
   return (
-<<<<<<< HEAD
-    <div>
-      <Navigation></Navigation>
-
-      <Noticia></Noticia>
-
-      
-      
-    </div>
-=======
     <>
     <BrowserRouter>
     <Navigation className="" categorias={categorias} user={user}></Navigation>
@@ -104,7 +94,6 @@ function App() {
 
     </BrowserRouter>
     </>
->>>>>>> login
   );
 }
 

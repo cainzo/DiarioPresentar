@@ -1,18 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import "bootstrap-icons/font/bootstrap-icons.css";
-
-const Footer = () => {
-  return (
-    <div className='main-footer bg-dark text-light py-3'>
-=======
 import "./footer.css";
 
 const Footer = () => {
   return (
     <div className='main-footer bg-dark text-light py-3 className="mt-5"'>
->>>>>>> login
       <div className='container'>
         <div className='row'>
           {/* Column1 */}
@@ -34,14 +26,9 @@ const Footer = () => {
           <div className='col'>
             <h4>Links utiles</h4>
             <ul className='list-unstyled'>
-<<<<<<< HEAD
-              <li><Link to= '/error404' className='text-light text-decoration-none'>Politicas de privacidad</Link></li>
-              <li><Link to= '/error404' className='text-light text-decoration-none'>Terminos y Condiciones</Link></li>
-=======
               <Link to= '/error404' className='text-light text-decoration-none'><li>Sobre Nosotros</li></Link>
               <Link to= '/error404' className='text-light text-decoration-none'><li>Contactanos </li></Link>
 
->>>>>>> login
             </ul>
           </div>
           {/* Column3 */}

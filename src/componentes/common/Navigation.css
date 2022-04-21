@@ -22,13 +22,8 @@
     
 }
 
-<<<<<<< HEAD
-.navegar-links:hover{
-    text-shadow: 1px 8px 5px rgb(0, 0, 0);
-=======
 .nav-link:hover{
     
->>>>>>> login
     transform: scale(1.1);
 }
 
