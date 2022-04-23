@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
-import Cards from '../cards/Cards';
+import Cards from "../cards/Cards";
 
 import { useLocation } from "react-router-dom";
 import "./home.css";
@@ -12,21 +12,20 @@ const Home = () => {
   useEffect(() => {
     const listaNoticias = async () => {
       try {
-
-        if(location === ""){
+        if (location === "") {
           const res = await axios.get(`noticias`);
           setNoticias(res.data);
-        }else{
+        } else {
           const res = await axios.get("noticias" + location.search);
           setNoticias(res.data);
         }
-        
       } catch (err) {
         console.log(err);
       }
     };
 
-    listaNoticias();
+    listaNoticias();/* esta funcion para mostrar la lista de las noticias que nos da el backend segun la categoria que seleccionamos (location), si no hay categoria
+    nos guarda las ultimas noticias sin filtros */
   }, [location]);
 
   const mostrarNoticiaa = () => {
@@ -35,11 +34,7 @@ const Home = () => {
       i++;
 
       if (i === 1) {
-        return (
-
-            <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
-
-        );
+        return <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>;
       } else {
       }
     });
@@ -48,36 +43,37 @@ const Home = () => {
     let i = 0;
     return noticias.map((x) => {
       i++;
-    if (i === 1) {
-        
+      if (i === 1) {
       } else {
         return (
-
-            <Col key={x._id} lg={6} md={6} sm={6}>
-              <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
-            </Col>
-
+          <Col key={x._id} lg={6} md={6} sm={6}>
+            <CardPrincipal key={x._id} noticiaProps={x}></CardPrincipal>
+          </Col>
         );
       }
     });
   };
   return (
-    	<>
+    <>
       <Card className="w-100 bg-dark  shadow">
         <Card.Img
           src="https://images.pexels.com/photos/3953481/pexels-photo-3953481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           alt="Card image"
           className="w-100 img-titulado-home m-0 p-0"
         />
-        <Card.ImgOverlay className="titulado-home" >
-            <h1 className="display-1 mb-0 pb-0 titulo">RollingPost</h1>
+        <Card.ImgOverlay className="titulado-home">
+          <h1 className="display-1 mb-0 pb-0 titulo">RollingPost</h1>
         </Card.ImgOverlay>
       </Card>
       <Container className="main">
         <Row>
           <Col lg={9} md={9} sm={9} className=" mt-4 mx-auto">
-            {mostrarNoticiaa()}
-            <Row>{mostrarNoticiaa2()}</Row>
+            {mostrarNoticiaa() /* mostrar la card mas grande*/}
+            <Row>
+              {
+                mostrarNoticiaa2() /* segunda funcion para mostrar cards mas pequenas en este contenedor*/
+              }
+            </Row>
           </Col>
           <Col lg={3} md={3} sm={3} className="sidebar mt-4 mx-auto">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
@@ -106,7 +102,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      </>
+    </>
   );
 };
 

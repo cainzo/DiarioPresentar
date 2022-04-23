@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Footer = () => {
   return (
-    <div className='main-footer bg-dark text-light py-3 className="mt-5"'>
+    <div className='main-footer bg-dark text-light py-3'  >
       <div className='container'>
         <div className='row'>
           {/* Column1 */}
@@ -26,8 +27,8 @@ const Footer = () => {
           <div className='col'>
             <h4>Links utiles</h4>
             <ul className='list-unstyled'>
-              <Link to= '/error404' className='text-light text-decoration-none'><li>Sobre Nosotros</li></Link>
-              <Link to= '/error404' className='text-light text-decoration-none'><li>Contactanos </li></Link>
+              <Link to= '/nosotros' className='text-light text-decoration-none'><li>Sobre Nosotros</li></Link>
+              <Link to= '/contactanos' className='text-light text-decoration-none'><li>Contactanos </li></Link>
 
             </ul>
           </div>

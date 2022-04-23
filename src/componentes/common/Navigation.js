@@ -14,8 +14,8 @@ import { logout } from "../../context/authContext/AuthActions";
 const Navigation = (props) => {
 const {dispatch} = useContext(AuthContext)
 
-  useEffect(() => {}, []);
-  const mostrarBotones = () => {
+
+  const mostrarBotones = () => { /* funcion para motrar dinamicamente los botones de categorias en la navbar*/
     return props.categorias.map((c) => {
       return (
         <Link to={"/?categoria=" + c.categoria} key={c._id} className="nav-link">
@@ -24,8 +24,9 @@ const {dispatch} = useContext(AuthContext)
       );
     });
   };
-
- const  mostrarPerfil = ()=>{
+/** funcion para cambiar dinamicamente el boton "login" a un menu con las opciones disponibles segun cada tipo de usuario 
+ * los usuarios que no son adm no tienen la opcion de ir al su perfil.*/
+ const  mostrarPerfil = ()=>{ 
     if(props.user.isAdmin){
       return <>
           <Nav>

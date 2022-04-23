@@ -1,5 +1,5 @@
 # RollingPost 
-
+    
 ### Librerias necesarias para correr el proyecto :
 #### Front End
 - npm install react-bootstrap
@@ -12,7 +12,7 @@
 - npm install draft-js draftjs-to-html
 - npm i slate slate-react
 - npm i react-draft-wysiwyg
-
+- npm i @emailjs/browser
 #### BackEnd
 - npm install mongoose --save
 - npm i jsonwebtoken

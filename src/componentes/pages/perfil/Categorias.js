@@ -14,22 +14,24 @@ import { crearCategoria } from '../../../context/categoriaContext/apiCalls';
 const Categorias = (props) => {
     const [categoria, setCategoria]= useState({})
     const {dispatch}=useContext(CategoriaContext);
-    const handleChange = (e)=>{
+    /** funcion para crear el objeto categoria en este caso CATEGORIAS tiene solo dos propiedastes (_id y categoria) asi que no hace falta hacerlo de esta forma
+     * esta funcion es mejor para forms mas largos
+     */
+    const handleChange = (e)=>{ 
         const value = e.target.value;
         setCategoria({...categoria, [e.target.name]:value})
-   
-
       };
+      
     const handleSubmit= (e)=>{
         e.preventDefault()
         crearCategoria(categoria, dispatch)
     }
 
   return (
-    <Row className="text-center">
+    <Row className="text-center h-100">
       <Col lg={2} md={2} xs={12} className="bg-light">
         {/* container de la sidebar  */}
-        <Container className=" m-0 p-0 pt-5 sticky-top text-start ">
+        <Container className=" m-0 p-0 pt-5 sticky-top text-start">
           <Sidebar></Sidebar>
         </Container>
       </Col>

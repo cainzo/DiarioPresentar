@@ -2,13 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "../pages/verNoticia.css";
+
 const VerNoticia = () => {
   const location = useLocation();
   const noticia = location.state;
 
-  
-  
-  
   return (
     <Container className="pt-5">
       <Container className="d-flex justify-content-between mt-5">

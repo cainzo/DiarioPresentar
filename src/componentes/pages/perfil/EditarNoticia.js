@@ -11,9 +11,10 @@ import { updateNoticia } from "../../../context/noticiaContext/apiCalls";
 export default function EditarNoticia(props) {
 
   const location = useLocation();
+  /** pasamos la noticia en la que clikeamos en un state en location y el cual es asignado a la variable "noti" */
   const noti = location.state;
+  /** hooks para llenar los campos del form con las informacio de la noticia a la que vamos a editar */
   const [noticia, setNoticia] = useState();
-
   const [titulo, setTitulo] = useState(noti.titulo);
   const [subtitulo, setSubTitulo] = useState(noti.subtitulo);
   const [desarrollo, setDesarrollo] = useState(noti.desarrollo);
@@ -39,14 +40,15 @@ export default function EditarNoticia(props) {
     })
   },[])
 
+/** funcion para crear el obj final que vamos a updatear por el anterior */
   const handleChange = (e)=>{
     const value = e.target.value;
     setNoticia({...noticia, [e.target.name]:value})
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    // mandamos el id de la noticia sin editar y el obj noticia para sobreescribirlo en la DB
     updateNoticia(noti._id ,noticia, dispatch)
-
   };
 
   return (

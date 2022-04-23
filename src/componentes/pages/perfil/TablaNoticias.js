@@ -22,8 +22,6 @@ const TablaNoticias = (props) => {
     const listaNoticias = async () => {
       try {
         setLoading(true);
-        //const res = await axios.get(`noticias${categoria ? "?categoria=" + categoria : ""}`,{headers:{token: "Bearer " + TOKENCUANDO TENGA EL LOGIN}});
-        //LA LINEA DE ARRIBA ES PARA AGREGARLE TOKEN A LAS REQUEST QUE LE HACEMOS A LA BASEDEDATOS
         const res = await axios.get(
           `crudnoticias?page=${page}&categoria=${location}`
         );
