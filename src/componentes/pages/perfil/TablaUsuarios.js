@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import './tablaUsuarios.css'
-import { Container, Card, Row, Col, Table, Form } from "react-bootstrap";
+import { Container, Table} from "react-bootstrap";
 
 const TablaUsuarios = () => {
     const [usuarios, setUsuarios] = useState([]);

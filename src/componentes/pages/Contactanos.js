@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
-import {Form, Button,Row, Col, InputGroup, Container} from "react-bootstrap";
-import Feedback from 'react-bootstrap/Feedback'
+import {Form, Button,Row, Col,  Container} from "react-bootstrap";
+
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2'
 

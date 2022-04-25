@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Row, Col, Button, Badge } from "react-bootstrap";
+import {Card, Badge } from "react-bootstrap";
 import "./Cards.css";
 
 const Cards = () => {

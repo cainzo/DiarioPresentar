@@ -1,13 +1,8 @@
 import React from 'react';
 import {
-    Container,
-    Row,
-    Col,
-    Form,
-    Button,
-    ListGroup,
+    Container
   } from "react-bootstrap";
-  import avatar from "../../img/avataaars.png"
+
   import avatar1 from "../../img/avataaars (1).png"
 //            <img src={avatar} alt="" />
 

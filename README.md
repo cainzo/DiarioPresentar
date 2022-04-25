@@ -13,7 +13,7 @@
 - npm i slate slate-react
 - npm i react-draft-wysiwyg
 - npm i @emailjs/browser
-
+- npm install node-polyfill-webpack-plugin
 #### BackEnd
 - npm install mongoose --save
 - npm i jsonwebtoken

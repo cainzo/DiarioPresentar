@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
-import Cards from "../cards/Cards";
+
 
 import { useLocation } from "react-router-dom";
 import "./home.css";
