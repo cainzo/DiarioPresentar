@@ -20,7 +20,7 @@ import Contactanos from "./componentes/pages/Contactanos";
 function App() {
   const { user } = useContext(AuthContext);
   const [categorias, setCategorias] = useState([]);
-
+  
   useEffect(() => {
     const getCats = async () => {
       try {
