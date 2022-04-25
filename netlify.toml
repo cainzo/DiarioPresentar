@@ -1,5 +1,5 @@
  [[redirects]]
-  from = "/*"
+  from = "/api/"
   to = "https://proyecto-final-gonzalocainzo.herokuapp.com/api/"
   status = 200
   force = true
