@@ -6,10 +6,23 @@ import "./Reg.css";
 import Swal from "sweetalert2";
 
 const Reg = () => {
+  var bcrypt = require("bcryptjs");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   
+
+  const hashContrasena = (x) => {
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(x, salt, function (err, hash) {
+        // Store hash in your password
+        setPassword(hash);
+      });
+    });
+  
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -49,7 +62,7 @@ const Reg = () => {
             placeholder="Password"
             className="cajitas"
             onChange={(e) => {
-              setPassword(e.target.value);
+               hashContrasena(e.target.value);
             }}
           />
         </Form.Group>

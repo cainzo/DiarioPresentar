@@ -8,11 +8,12 @@
 - npm install @mui/icons-material
 - npm install @mui/material
 - npm install sweetalert2
-- npm i bcrypt
+- npm i bcryptjs
 - npm install draft-js draftjs-to-html
 - npm i slate slate-react
 - npm i react-draft-wysiwyg
 - npm i @emailjs/browser
+
 #### BackEnd
 - npm install mongoose --save
 - npm i jsonwebtoken
@@ -20,6 +21,7 @@
 - npm i express
 - npm i nodemon
 - npm i validator
+- npm i bcryptjs
 
 
 # Descripcion
