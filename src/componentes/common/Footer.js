@@ -14,7 +14,7 @@ const Footer = () => {
             <ul className='list-unstyled'>
               <li><i className="bi bi-whatsapp"></i> (0381)-152661535</li>
               <li><a
-                target="_blank"
+                target=""
                 className="text-decoration-none text-light"
                 href="https://goo.gl/maps/KoHzMiLqZQFKvdkX7"
               >
