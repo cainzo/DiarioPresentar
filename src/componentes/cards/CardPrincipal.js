@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Badge } from "react-bootstrap";
+import { Card, Badge, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./cardprincipal.css";
 
@@ -18,12 +18,15 @@ const CardPrincipal = (props) => {
         />
 
         <Card.ImgOverlay className="overlay">
-          <Card.Title>{props.noticiaProps.titulo}</Card.Title>
 
+          <Card.Title>{props.noticiaProps.titulo}</Card.Title>
           <Card.Text className="card-descripcion">
             {props.noticiaProps.subtitulo}
           </Card.Text>
-          <Card.Text>{props.noticiaProps.createdAt}</Card.Text>
+          <Container className="d-flex justify-content-between m-0 p-0">
+          <Card.Text>{props.noticiaProps.createdAt.slice(0,10)} Por: {props.noticiaProps.autor}</Card.Text>
+   
+          </Container>
         </Card.ImgOverlay>
       </Card>
     </Link>

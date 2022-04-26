@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import CardPrincipal from "../cards/CardPrincipal";
-
+import PublicidadLarga from '../../img/publicidad1.png';
+import PublicidadCuadrada from '../../img/publicuadrada1.jpg';
 
 import { useLocation } from "react-router-dom";
 import "./home.css";
@@ -69,36 +70,18 @@ const Home = () => {
         <Row>
           <Col lg={9} md={9} sm={9} className=" mt-4 mx-auto">
             {mostrarNoticiaa() /* mostrar la card mas grande*/}
+            <img src={PublicidadLarga} alt="publi" className="w-100 my-5" />
+
             <Row>
               {
                 mostrarNoticiaa2() /* segunda funcion para mostrar cards mas pequenas en este contenedor*/
               }
             </Row>
+            <img src={PublicidadLarga} alt="publi" className="w-100 my-5" />
           </Col>
           <Col lg={3} md={3} sm={3} className="sidebar mt-4 mx-auto">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
-            expedita hic, maiores ad odio vel officiis deleniti exercitationem
-            voluptates sunt vero fuga iure necessitatibus quaerat omnis neque
-            fugit, reprehenderit voluptate! Architecto neque vero, sequi aliquid
-            inventore expedita! Eum quo voluptates ut nulla numquam impedit
-            tempora natus sunt adipisci ex, quia velit recusandae reiciendis
-            blanditiis officiis deserunt nostrum itaque veritatis asperiores
-            minima, iure molestiae aut nisi vero. Autem, tempore error? Modi
-            assumenda velit voluptates molestias quibusdam quidem laudantium
-            temporibus aperiam nam, ratione dolore cupiditate doloremque tempore
-            sapiente earum, nisi perferendis odit aliquam ipsum, in asperiores
-            suscipit fuga odio? Optio, natus cumque, harum rerum cupiditate
-            repellendus magnam eum ratione modi accusantium rem suscipit a
-            adipisci quisquam! Placeat voluptas perferendis praesentium
-            accusamus assumenda incidunt blanditiis! Fugit, cupiditate amet
-            tenetur inventore vel nulla facilis non rem optio reiciendis eos
-            autem voluptas necessitatibus quam impedit explicabo sequi quidem
-            qui laborum, molestias soluta id! Earum vero, eaque amet maiores
-            voluptatibus nisi ut, quisquam similique ab animi vel error aliquid
-            officia neque. Sequi mollitia provident, quisquam saepe et odio
-            illum repellat. Nobis, quia molestiae exercitationem rerum dicta sit
-            ipsum facere modi neque vero natus accusantium sed eius optio ad
-            praesentium eaque minima architecto tenetur dolor est unde.
+           <img src={PublicidadCuadrada} alt="publi" className="w-100 my-5" />
+           <img src={PublicidadCuadrada} alt="publi" className="w-100 my-5"/>
           </Col>
         </Row>
       </Container>

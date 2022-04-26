@@ -15,8 +15,10 @@
             line-clamp: 1;
     -webkit-box-orient: vertical;
 }
+
+
 .card-noticia-top{
-    max-lines: 3;
+    max-lines: 2;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
