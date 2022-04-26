@@ -20,7 +20,7 @@ export const getCategorias = async (dispatch) => {
     getCategoriasStart();
   
     try {
-      const res = await axios.get("/categorias/");
+      const res = await axios.get("https://proyecto-final-gonzalocainzo.herokuapp.com/api/categorias/");
       getCategoriasSuccess(res.data);
       console.log(res.data)
     } catch (err) {
@@ -34,7 +34,7 @@ export const crearCategoria = async (categoria, dispatch) => {
     crearCategoriaStart();
   
     try {
-      const res = await axios.post("/categorias/", categoria, {
+      const res = await axios.post("https://proyecto-final-gonzalocainzo.herokuapp.com/api/categorias/", categoria, {
         headers: {
           token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
         },
@@ -89,7 +89,7 @@ export const crearCategoria = async (categoria, dispatch) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete("/categorias/" + id, {
+          await axios.delete("https://proyecto-final-gonzalocainzo.herokuapp.com/api/categorias/" + id, {
             headers: {
               token:
                 "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,

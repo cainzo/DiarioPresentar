@@ -22,7 +22,7 @@ export const getNoticias = async (dispatch) => {
   getNoticiasStart();
 
   try {
-    const res = await axios.get("crudnoticias", {
+    const res = await axios.get("https://proyecto-final-gonzalocainzo.herokuapp.com/api/crudnoticias", {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -38,7 +38,7 @@ export const crearNoticia = async (noticia, dispatch ) => {
   crearNoticiaStart();
 
   try {
-    const res = await axios.post("/crudnoticias/", noticia, {
+    const res = await axios.post("https://proyecto-final-gonzalocainzo.herokuapp.com/api/crudnoticias/", noticia, {
       headers: {
         token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
       },
@@ -91,7 +91,7 @@ export const updateNoticia = async (id, noticia, dispatch) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
-        const res = await axios.put("/crudnoticias/" + id, noticia, {
+        const res = await axios.put("https://proyecto-final-gonzalocainzo.herokuapp.com/api/crudnoticias/" + id, noticia, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -126,11 +126,11 @@ export const deleteNoticia = async (id, dispatch) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
-        await axios.delete("/crudnoticias/" + id, {
+        await axios.delete("https://proyecto-final-gonzalocainzo.herokuapp.com/api/crudnoticias/" + id, {
           headers: {
             token:
               "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-          },
+          }
         });
         deleteNoticiaSuccess(id);
         Swal.fire("Deleted!", "Your file has been deleted.", "success");

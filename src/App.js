@@ -20,11 +20,11 @@ import Contactanos from "./componentes/pages/Contactanos";
 function App() {
   const { user } = useContext(AuthContext);
   const [categorias, setCategorias] = useState([]);
-  
+  const URL = process.env.API_URL;
   useEffect(() => {
     const getCats = async () => {
       try {
-        const res = await axios.get("/categorias/");
+        const res = await axios.get( "https://proyecto-final-gonzalocainzo.herokuapp.com/api/categorias");
         setCategorias(res.data);
       } catch (error) {
         console.log(error);

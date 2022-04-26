@@ -13,10 +13,10 @@ const Home = () => {
     const listaNoticias = async () => {
       try {
         if (location === "") {
-          const res = await axios.get(`noticias`);
+          const res = await axios.get(`https://proyecto-final-gonzalocainzo.herokuapp.com/api/noticias`);
           setNoticias(res.data);
         } else {
-          const res = await axios.get("noticias" + location.search);
+          const res = await axios.get("https://proyecto-final-gonzalocainzo.herokuapp.com/api/noticias" + location.search);
           setNoticias(res.data);
         }
       } catch (err) {

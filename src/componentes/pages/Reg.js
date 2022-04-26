@@ -26,7 +26,7 @@ const Reg = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", { email, password });
+      await axios.post("https://proyecto-final-gonzalocainzo.herokuapp.com/api/auth/register", { email, password });
       Swal.fire({
         icon: "success",
         text: "Cuenta creada con exito",

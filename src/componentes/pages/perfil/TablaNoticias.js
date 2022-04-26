@@ -23,7 +23,7 @@ const TablaNoticias = (props) => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `crudnoticias?page=${page}&categoria=${location}`
+          `https://proyecto-final-gonzalocainzo.herokuapp.com/api/crudnoticias?page=${page}&categoria=${location}`
         );
         setPage(res.data.page);
         setPages(res.data.pages);

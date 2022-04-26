@@ -7,7 +7,7 @@ export const login = async (user,dispatch)=>{
     dispatch(loginStart());
 
     try {
-        const res = await axios.post("auth/login", user);
+        const res = await axios.post("https://proyecto-final-gonzalocainzo.herokuapp.com/api/auth/login", user);
         res.data && dispatch(loginSucces(res.data));
         let timerInterval;
         Swal.fire({

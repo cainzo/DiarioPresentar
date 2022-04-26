@@ -15,7 +15,7 @@ const TablaUsuarios = () => {
         const listaUsuarios = async()=>{
           try {
             setLoading(true)
-            const res = await axios.get(`users?page=${pageUsuarios}`);
+            const res = await axios.get(`https://proyecto-final-gonzalocainzo.herokuapp.com/api/users?page=${pageUsuarios}`);
             setPageUsuarios(res.data.page);
             setPagesUsuarios(res.data.pages);
             setUsuarios(res.data.data);
