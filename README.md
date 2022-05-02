@@ -1,7 +1,8 @@
 # RollingPost 
 ### admin
-  mail  admin@admin.com
-  pass  admin
+Log-in as an admin.
+ - mail:  admin@admin.com
+ - pass: admin
 ### Librerias necesarias para correr el proyecto :
 #### Front End
 - npm install react-bootstrap
