@@ -3,7 +3,7 @@
 Log-in as an admin.
  - mail:  admin@admin.com
  - pass: admin
-Multiple CRUD operations : Register | Login | Adm Perfil : NEWS crud Categories crud.
+### Multiple CRUD operations : Register | Login | Adm Perfil : NEWS crud Categories crud.
 ### Librerias necesarias para correr el proyecto :
 #### Front End
 - npm install react-bootstrap
